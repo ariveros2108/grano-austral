@@ -19,7 +19,13 @@ const db = require('../src/db');
 const app = require('../src/app');
 
 before(async () => { await db.inicializar(); });
-after(() => { for (const f of [archivoDb, `${archivoDb}-wal`, `${archivoDb}-shm`]) fs.rmSync(f, { force: true }); });
+after(() => {
+  // En Windows el archivo queda bloqueado mientras la conexión siga abierta: se cierra antes de borrar
+  db.db().close();
+  for (const f of [archivoDb, `${archivoDb}-wal`, `${archivoDb}-shm`]) {
+    try { fs.rmSync(f, { force: true }); } catch { /* archivo temporal: si no se puede borrar, no es un fallo del test */ }
+  }
+});
 
 test('páginas públicas responden 200', async () => {
   for (const url of ['/', '/productos', '/producto/huila-lavado-250-g', '/carrito', '/login', '/registro', '/nosotros', '/salud']) {
