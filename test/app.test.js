@@ -39,6 +39,26 @@ test('404 para rutas y productos inexistentes', async () => {
   assert.strictEqual((await request(app).get('/producto/no-existe')).status, 404);
 });
 
+test('GA_DEBUG agrega debug_mode a cada evento y un page_view manual', async () => {
+  const config = require('../src/config');
+  const original = { gaId: config.gaId, gaDebug: config.gaDebug };
+  try {
+    config.gaId = 'G-PRUEBA123';
+    config.gaDebug = true;
+    const conDebug = (await request(app).get('/')).text;
+    assert.ok(conDebug.includes("Object.assign({}, params, { debug_mode: true })"), 'falta el envoltorio de gtag');
+    assert.ok(conDebug.includes('send_page_view: false'));
+    assert.ok(conDebug.includes("gtag('event', 'page_view')"));
+
+    config.gaDebug = false;
+    const sinDebug = (await request(app).get('/')).text;
+    assert.ok(sinDebug.includes("gtag('config', 'G-PRUEBA123')"));
+    assert.ok(!sinDebug.includes('debug_mode'), 'sin GA_DEBUG no debe haber debug_mode');
+  } finally {
+    Object.assign(config, original);
+  }
+});
+
 test('la búsqueda ignora tildes y mayúsculas', async () => {
   assert.strictEqual(db.normalizar('Ñuñoa ETIOPÍA'), 'nunoa etiopia');
   const conTilde = await db.buscarProductos({ q: 'Etiopía' });
