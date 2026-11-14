@@ -41,7 +41,8 @@ const ESQUEMA = [
      material TEXT, capacidad TEXT,
      forma TEXT, color TEXT,
      valoracion REAL DEFAULT 4.5,
-     destacado INTEGER DEFAULT 0
+     destacado INTEGER DEFAULT 0,
+     busqueda TEXT -- nombre, descripción, notas, origen y región normalizados (minúsculas, sin tildes)
    )`,
   `CREATE INDEX IF NOT EXISTS idx_productos_categoria ON productos(categoria)`,
   `CREATE TABLE IF NOT EXISTS usuarios (
@@ -82,6 +83,42 @@ const COLUMNAS_PRODUCTO = [
   'peso_g', 'material', 'capacidad', 'forma', 'color', 'valoracion', 'destacado',
 ];
 
+/**
+ * Normaliza texto para búsquedas: minúsculas y sin tildes ("Etiopía" → "etiopia", "Ñuñoa" → "nunoa").
+ * Se hace en JS porque el LIKE de SQLite distingue tildes y Turso no permite funciones SQL propias.
+ * @param {string|null|undefined} texto
+ * @returns {string}
+ */
+function normalizar(texto) {
+  return String(texto ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+}
+
+/** Texto de búsqueda de un producto: une los campos buscables ya normalizados. */
+function textoBusqueda(p) {
+  return normalizar([p.nombre, p.descripcion, p.notas, p.origen, p.region].filter(Boolean).join(' · '));
+}
+
+/**
+ * Migración idempotente de la columna `busqueda`: la agrega si falta (BD creada antes de existir)
+ * y llena los productos que no la tengan. En arranques posteriores solo cuesta dos consultas livianas.
+ */
+async function migrarBusqueda(c) {
+  const { rows: columnas } = await c.execute('PRAGMA table_info(productos)');
+  if (!columnas.some((col) => col.name === 'busqueda')) {
+    await c.execute('ALTER TABLE productos ADD COLUMN busqueda TEXT');
+  }
+  const { rows } = await c.execute(
+    'SELECT id, nombre, descripcion, notas, origen, region FROM productos WHERE busqueda IS NULL'
+  );
+  if (rows.length) {
+    await c.batch(
+      rows.map((p) => ({ sql: 'UPDATE productos SET busqueda = ? WHERE id = ?', args: [textoBusqueda(p), p.id] })),
+      'write'
+    );
+    console.log(`[db] Texto de búsqueda normalizado en ${rows.length} productos.`);
+  }
+}
+
 /** Crea las tablas y carga el catálogo si la base está vacía. Es idempotente. */
 async function inicializar() {
   const c = db();
@@ -106,6 +143,7 @@ async function inicializar() {
     await c.batch(sentencias, 'write');
     console.log(`[db] Catálogo sembrado: ${productos.length} productos.`);
   }
+  await migrarBusqueda(c);
 
   if (config.sembrarUsuariosCarga) {
     // Un solo hash para todos (misma contraseña) => arranque rápido
@@ -164,9 +202,9 @@ async function buscarProductos(f = {}) {
   const where = [];
   const args = [];
   if (f.q) {
-    where.push('(nombre LIKE ? OR descripcion LIKE ? OR notas LIKE ? OR origen LIKE ?)');
-    const like = `%${f.q}%`;
-    args.push(like, like, like, like);
+    // Un solo LIKE sobre la columna normalizada (antes: 4 LIKE por fila, sensibles a tildes)
+    where.push('busqueda LIKE ?');
+    args.push(`%${normalizar(f.q)}%`);
   }
   if (f.categoria) { where.push('categoria = ?'); args.push(f.categoria); }
   if (f.tueste) { where.push('tueste = ?'); args.push(f.tueste); }
@@ -283,7 +321,7 @@ async function obtenerPedidosDeUsuario(usuarioId) {
 }
 
 module.exports = {
-  db, inicializar,
+  db, inicializar, normalizar,
   obtenerCategorias, obtenerDestacados, obtenerOrigenes, buscarProductos, obtenerProductoPorSlug,
   obtenerProductosPorIds, obtenerRelacionados,
   crearUsuario, obtenerUsuarioPorEmail,

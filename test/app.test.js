@@ -39,6 +39,18 @@ test('404 para rutas y productos inexistentes', async () => {
   assert.strictEqual((await request(app).get('/producto/no-existe')).status, 404);
 });
 
+test('la búsqueda ignora tildes y mayúsculas', async () => {
+  assert.strictEqual(db.normalizar('Ñuñoa ETIOPÍA'), 'nunoa etiopia');
+  const conTilde = await db.buscarProductos({ q: 'Etiopía' });
+  const sinTilde = await db.buscarProductos({ q: 'etiopia' });
+  const mayusculas = await db.buscarProductos({ q: 'ETIOPÍA' });
+  assert.ok(conTilde.total > 0);
+  assert.strictEqual(sinTilde.total, conTilde.total);
+  assert.strictEqual(mayusculas.total, conTilde.total);
+  const html = (await request(app).get('/productos?q=etiopia')).text;
+  assert.ok(!html.includes('No encontramos productos'), 'la página de resultados debe listar productos');
+});
+
 test('búsqueda y filtros acotan resultados', async () => {
   const todos = await db.buscarProductos({});
   const oscuros = await db.buscarProductos({ tueste: 'oscuro' });
