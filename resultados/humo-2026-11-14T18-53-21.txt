@@ -1,0 +1,48 @@
+RESUMEN — escenario "humo" contra https://grano-austral.onrender.com
+Duración: 45 s · VUs máx: 2
+
+Tiempo de respuesta HTTP (todas las peticiones):
+  promedio 182.7 ms | mediana 147.1 ms | p90 234.7 ms | p95 399.3 ms | p99 564.5 ms | máx 598.3 ms
+Throughput: 2.13 req/s (96 peticiones)
+Tasa de error HTTP: 0.00 %
+Checks OK: 100.00 %
+
+Embudo sintético:
+  sesiones 6 → vistas producto 7 → agregar carrito 4 → checkout 3 → compras 2
+  compras exitosas: 100.0 % · duración flujo compra p95: 20247.5 ms
+
+Por página (p95):
+  agregar_carrito          p95 146.8 ms  (mediana 142.3 ms)
+  busqueda_filtrada        p95 0.0 ms  (mediana 0.0 ms)
+  busqueda                 p95 0.0 ms  (mediana 0.0 ms)
+  carrito                  p95 149.6 ms  (mediana 148.4 ms)
+  checkout_sin_sesion      p95 139.8 ms  (mediana 139.4 ms)
+  checkout                 p95 145.7 ms  (mediana 142.3 ms)
+  confirmacion_pedido      p95 220.3 ms  (mediana 195.7 ms)
+  detalle_producto         p95 299.5 ms  (mediana 151.1 ms)
+  estaticos                p95 399.3 ms  (mediana 139.4 ms)
+  inicio                   p95 223.1 ms  (mediana 188.5 ms)
+  listado_categoria        p95 219.3 ms  (mediana 161.1 ms)
+  login_form               p95 139.1 ms  (mediana 137.8 ms)
+  login                    p95 596.5 ms  (mediana 580.5 ms)
+  pagar                    p95 324.5 ms  (mediana 270.4 ms)
+
+Umbrales:
+  CUMPLE    http_req_duration{name:checkout} p(95)<3000
+  CUMPLE    http_req_duration{name:pagar} p(95)<3000
+  CUMPLE    http_req_duration{name:confirmacion_pedido} p(95)<3000
+  CUMPLE    http_req_duration{name:carrito} p(95)<3000
+  CUMPLE    http_req_duration{tipo:pagina} p(95)<800
+  CUMPLE    http_req_duration{name:checkout_sin_sesion} p(95)<3000
+  CUMPLE    http_req_duration{name:listado_categoria} p(95)<3000
+  CUMPLE    http_req_duration{name:inicio} p(95)<3000
+  CUMPLE    http_req_duration{name:login} p(95)<3000
+  CUMPLE    http_req_duration{name:login_form} p(95)<3000
+  CUMPLE    http_req_duration{tipo:accion} p(95)<1500
+  CUMPLE    http_req_failed rate<0.01
+  CUMPLE    checks rate>0.98
+  CUMPLE    http_req_duration{name:agregar_carrito} p(95)<3000
+  CUMPLE    http_req_duration{name:detalle_producto} p(95)<3000
+  CUMPLE    http_req_duration{name:busqueda_filtrada} p(95)<3000
+  CUMPLE    http_req_duration{name:estaticos} p(95)<3000
+  CUMPLE    http_req_duration{name:busqueda} p(95)<3000
