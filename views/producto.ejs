@@ -1,0 +1,43 @@
+<%- include('partials/cabecera') %>
+
+<div class="migas"><a href="/">Inicio</a> / <a href="/productos?categoria=<%= producto.categoria %>"><%= producto.categoria_nombre %></a> / <span><%= producto.nombre %></span></div>
+
+<article class="detalle">
+  <div class="detalle-img">
+    <img src="/img/producto/<%= producto.slug %>.svg" alt="<%= producto.nombre %>" width="400" height="400">
+  </div>
+  <div class="detalle-info">
+    <h1><%= producto.nombre %></h1>
+    <p class="valoracion">★ <%= Number(producto.valoracion).toFixed(1) %> / 5</p>
+    <p class="precio precio-grande"><%= clp(producto.precio) %></p>
+    <p><%= producto.descripcion %></p>
+
+    <dl class="ficha">
+      <% const ficha = [['Origen', producto.origen], ['Región', producto.region], ['Proceso', producto.proceso], ['Tueste', producto.tueste], ['Notas de cata', producto.notas], ['Peso', producto.peso_g ? (producto.peso_g >= 1000 ? producto.peso_g / 1000 + ' kg' : producto.peso_g + ' g') : null], ['Material', producto.material], ['Capacidad', producto.capacidad]]; %>
+      <% ficha.filter(function (f) { return f[1]; }).forEach(function (f) { %>
+        <dt><%= f[0] %></dt><dd><%= f[1] %></dd>
+      <% }) %>
+    </dl>
+
+    <form action="/carrito/agregar" method="post" class="agregar">
+      <input type="hidden" name="producto_id" value="<%= producto.id %>">
+      <label>Cantidad
+        <input type="number" name="cantidad" value="1" min="1" max="20">
+      </label>
+      <button type="submit" class="btn btn-primario">Agregar al carrito</button>
+    </form>
+  </div>
+</article>
+
+<% if (relacionados.length) { %>
+<section>
+  <h2>También te puede gustar</h2>
+  <div class="grilla-productos">
+    <% relacionados.forEach(function (p) { %>
+      <%- include('partials/tarjeta', { p: p, volver: '/producto/' + producto.slug }) %>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<%- include('partials/pie') %>

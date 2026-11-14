@@ -1,0 +1,28 @@
+<%- include('partials/cabecera') %>
+
+<div class="titulo-seccion">
+  <h1>Mi cuenta</h1>
+  <form action="/logout" method="post"><button type="submit" class="btn btn-secundario">Cerrar sesión</button></form>
+</div>
+<p><strong><%= usuario.nombre %></strong> · <%= usuario.email %></p>
+
+<h2>Mis pedidos</h2>
+<% if (!pedidos.length) { %>
+  <p>Aún no tienes pedidos. <a href="/productos">Explora el catálogo</a>.</p>
+<% } else { %>
+  <table class="tabla-carrito">
+    <thead><tr><th>Orden</th><th>Fecha (UTC)</th><th>Estado</th><th>Total</th></tr></thead>
+    <tbody>
+      <% pedidos.forEach(function (p) { %>
+        <tr>
+          <td><a href="/pedido/<%= p.id %>"><%= p.orden_compra %></a></td>
+          <td><%= p.creado_en %></td>
+          <td><span class="estado estado-<%= p.estado %>"><%= p.estado %></span></td>
+          <td><%= clp(p.total) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>
+
+<%- include('partials/pie') %>

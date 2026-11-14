@@ -1,0 +1,34 @@
+  </main>
+  <footer class="pie">
+    <div class="contenedor pie-fila">
+      <div>
+        <strong>Grano Austral</strong><br>
+        Tostaduría ficticia de café de especialidad.<br>
+        Envío gratis sobre $30.000.
+      </div>
+      <div>
+        <a href="/productos">Catálogo</a><br>
+        <a href="/carrito">Carrito</a><br>
+        <a href="/cuenta">Mi cuenta</a>
+      </div>
+      <div>
+        <a href="/nosotros">Sobre este proyecto</a><br>
+        INFB8091 Desempeño de Sistemas<br>
+        Universidad Tecnológica Metropolitana
+      </div>
+    </div>
+  </footer>
+  <%
+    // Eventos GA4 de esta página + los encolados tras una redirección (agregar al carrito, login, etc.)
+    const eventosGA = [...(typeof gaPendientes !== 'undefined' ? gaPendientes : []), ...(typeof ga !== 'undefined' ? ga : [])];
+  %>
+  <script>
+    (function () {
+      var eventos = <%- JSON.stringify(eventosGA).replace(/</g, '\\u003c') %>;
+      eventos.forEach(function (e) { gtag('event', e[0], e[1]); });
+    })();
+  </script>
+  <script src="/js/web-vitals.iife.js" defer></script>
+  <script src="/js/app.js" defer></script>
+</body>
+</html>

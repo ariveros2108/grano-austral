@@ -1,0 +1,49 @@
+<%- include('partials/cabecera') %>
+
+<section class="hero">
+  <div class="hero-texto">
+    <p class="sobretitulo">Tostado cada semana en Santiago</p>
+    <h1>Café de especialidad, de la cordillera a tu taza</h1>
+    <p>Orígenes de Latinoamérica y África, métodos de preparación y accesorios para preparar un buen café en casa.</p>
+    <div class="hero-acciones">
+      <a href="/productos?categoria=cafe-grano" class="btn btn-primario">Ver cafés</a>
+      <a href="/productos?categoria=metodos" class="btn btn-secundario">Métodos de preparación</a>
+    </div>
+  </div>
+  <div class="hero-img" aria-hidden="true">
+    <img src="/img/producto/yirgacheffe-natural-250-g.svg" alt="" width="400" height="400">
+  </div>
+</section>
+
+<section>
+  <h2>Categorías</h2>
+  <div class="grilla-categorias">
+    <% categorias.forEach(function (c) { %>
+      <a class="categoria" href="/productos?categoria=<%= c.slug %>">
+        <strong><%= c.nombre %></strong>
+        <span><%= c.descripcion %></span>
+        <small><%= c.total %> productos</small>
+      </a>
+    <% }) %>
+  </div>
+</section>
+
+<section>
+  <div class="titulo-seccion">
+    <h2>Destacados</h2>
+    <a href="/productos">Ver todo el catálogo →</a>
+  </div>
+  <div class="grilla-productos">
+    <% destacados.forEach(function (p) { %>
+      <%- include('partials/tarjeta', { p: p, volver: '/' }) %>
+    <% }) %>
+  </div>
+</section>
+
+<section class="beneficios">
+  <div><strong>Envío gratis</strong><span>en compras sobre $30.000</span></div>
+  <div><strong>Tostado fresco</strong><span>despachamos dentro de 7 días desde el tueste</span></div>
+  <div><strong>Pago seguro</strong><span>Webpay Plus (ambiente de pruebas)</span></div>
+</section>
+
+<%- include('partials/pie') %>

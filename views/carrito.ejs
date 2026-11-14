@@ -1,0 +1,53 @@
+<%- include('partials/cabecera') %>
+
+<h1>Tu carrito</h1>
+
+<% if (!carrito.items.length) { %>
+  <div class="vacio">
+    <p>Tu carrito está vacío.</p>
+    <a href="/productos" class="btn btn-primario">Ir al catálogo</a>
+  </div>
+<% } else { %>
+  <div class="carrito">
+    <table class="tabla-carrito">
+      <thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Subtotal</th><th></th></tr></thead>
+      <tbody>
+        <% carrito.items.forEach(function (it) { %>
+          <tr>
+            <td class="celda-producto">
+              <img src="/img/producto/<%= it.slug %>.svg" alt="" width="56" height="56">
+              <a href="/producto/<%= it.slug %>"><%= it.nombre %></a>
+            </td>
+            <td><%= clp(it.precio) %></td>
+            <td>
+              <form action="/carrito/actualizar" method="post" class="form-cantidad">
+                <input type="hidden" name="producto_id" value="<%= it.id %>">
+                <input type="number" name="cantidad" value="<%= it.cantidad %>" min="0" max="20" aria-label="Cantidad de <%= it.nombre %>">
+                <button type="submit" class="btn-link">Actualizar</button>
+              </form>
+            </td>
+            <td><%= clp(it.subtotal) %></td>
+            <td>
+              <form action="/carrito/eliminar" method="post">
+                <input type="hidden" name="producto_id" value="<%= it.id %>">
+                <button type="submit" class="btn-link peligro" aria-label="Eliminar <%= it.nombre %>">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <aside class="resumen">
+      <h2>Resumen</h2>
+      <div class="fila"><span>Subtotal</span><span><%= clp(carrito.subtotal) %></span></div>
+      <div class="fila"><span>Envío</span><span><%= carrito.envio ? clp(carrito.envio) : 'Gratis' %></span></div>
+      <% if (carrito.envio) { %><p class="nota">Agrega <%= clp(30000 - carrito.subtotal) %> más para envío gratis.</p><% } %>
+      <div class="fila total"><span>Total</span><span><%= clp(carrito.total) %></span></div>
+      <a href="/checkout" class="btn btn-primario btn-bloque">Ir a pagar</a>
+      <a href="/productos" class="btn btn-secundario btn-bloque">Seguir comprando</a>
+    </aside>
+  </div>
+<% } %>
+
+<%- include('partials/pie') %>

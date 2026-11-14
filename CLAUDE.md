@@ -1,0 +1,19 @@
+# CLAUDE.md
+
+Este proyecto usa `AGENTS.md` como fuente única de instrucciones. Léelo y síguelo:
+
+@AGENTS.md
+
+## Específico de Claude Code
+
+- El hook `UserPromptSubmit` (`.claude/settings.json` → `.claude/hooks/registrar-prompt.js`) ya escribe en `LogFile.txt` cada prompt completo con fecha y hora. **No lo dupliques.**
+- Al terminar cada respuesta en la que hayas hecho algo, agrega al final de `LogFile.txt` (debajo del último prompt registrado):
+
+  ```
+  RESULTADO: <resumen de lo generado: archivos creados/modificados, paquetes instalados, decisiones de diseño>
+  MODELO: <modelo que usaste en esta respuesta>
+  ```
+
+- Al iniciar la sesión, lee las últimas ~80 líneas de `LogFile.txt` y `git log --oneline -15`.
+- Antes de editar, explica el plan y espera confirmación. Al final, pregunta si hacer commit y si hacer deploy (Render despliega automáticamente al hacer `git push` a `main`).
+- Ejecuta `npm test` antes de dar por terminada una tarea.

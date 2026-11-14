@@ -1,0 +1,19 @@
+<article class="tarjeta">
+  <a href="/producto/<%= p.slug %>" class="tarjeta-img">
+    <img src="/img/producto/<%= p.slug %>.svg" alt="<%= p.nombre %>" width="400" height="400" loading="lazy">
+  </a>
+  <div class="tarjeta-cuerpo">
+    <% if (p.origen) { %><span class="etiqueta"><%= p.origen %><%= p.tueste ? ' · tueste ' + p.tueste : '' %></span><% } else if (p.tueste) { %><span class="etiqueta">Tueste <%= p.tueste %></span><% } else if (p.material) { %><span class="etiqueta"><%= p.material %></span><% } %>
+    <h3><a href="/producto/<%= p.slug %>"><%= p.nombre %></a></h3>
+    <div class="tarjeta-pie">
+      <span class="precio"><%= clp(p.precio) %></span>
+      <span class="valoracion" title="Valoración">★ <%= Number(p.valoracion).toFixed(1) %></span>
+    </div>
+    <form action="/carrito/agregar" method="post">
+      <input type="hidden" name="producto_id" value="<%= p.id %>">
+      <input type="hidden" name="cantidad" value="1">
+      <input type="hidden" name="volver" value="<%= typeof volver !== 'undefined' ? volver : '/carrito' %>">
+      <button type="submit" class="btn btn-secundario btn-bloque">Agregar al carrito</button>
+    </form>
+  </div>
+</article>

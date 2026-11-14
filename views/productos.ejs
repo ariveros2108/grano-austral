@@ -1,0 +1,78 @@
+<%- include('partials/cabecera') %>
+
+<div class="migas"><a href="/">Inicio</a> / <span><%= titulo %></span></div>
+<h1><%= titulo %></h1>
+<% if (categoriaActual) { %><p class="subtitulo"><%= categoriaActual.descripcion %></p><% } %>
+
+<div class="catalogo">
+  <aside class="filtros">
+    <form action="/productos" method="get" id="form-filtros">
+      <label>Buscar
+        <input type="search" name="q" value="<%= filtros.q %>" placeholder="ej: chocolate, Etiopía">
+      </label>
+      <label>Categoría
+        <select name="categoria">
+          <option value="">Todas</option>
+          <% categorias.forEach(function (c) { %>
+            <option value="<%= c.slug %>" <%= filtros.categoria === c.slug ? 'selected' : '' %>><%= c.nombre %> (<%= c.total %>)</option>
+          <% }) %>
+        </select>
+      </label>
+      <label>Tueste
+        <select name="tueste">
+          <option value="">Cualquiera</option>
+          <% ['claro', 'medio', 'oscuro'].forEach(function (t) { %>
+            <option value="<%= t %>" <%= filtros.tueste === t ? 'selected' : '' %>><%= t[0].toUpperCase() + t.slice(1) %></option>
+          <% }) %>
+        </select>
+      </label>
+      <label>Origen
+        <select name="origen">
+          <option value="">Todos</option>
+          <% origenes.forEach(function (o) { %>
+            <option value="<%= o.origen %>" <%= filtros.origen === o.origen ? 'selected' : '' %>><%= o.origen %></option>
+          <% }) %>
+        </select>
+      </label>
+      <fieldset class="rango">
+        <legend>Precio (CLP)</legend>
+        <input type="number" name="precio_min" min="0" step="1000" placeholder="Mín" value="<%= filtros.precioMin ?? '' %>" aria-label="Precio mínimo">
+        <input type="number" name="precio_max" min="0" step="1000" placeholder="Máx" value="<%= filtros.precioMax ?? '' %>" aria-label="Precio máximo">
+      </fieldset>
+      <label>Ordenar por
+        <select name="orden">
+          <% [['relevancia','Relevancia'],['precio_asc','Precio: menor a mayor'],['precio_desc','Precio: mayor a menor'],['valoracion','Mejor valorados'],['nombre','Nombre A–Z']].forEach(function (o) { %>
+            <option value="<%= o[0] %>" <%= filtros.orden === o[0] ? 'selected' : '' %>><%= o[1] %></option>
+          <% }) %>
+        </select>
+      </label>
+      <button type="submit" class="btn btn-primario btn-bloque">Aplicar filtros</button>
+      <a href="/productos" class="limpiar">Limpiar filtros</a>
+    </form>
+  </aside>
+
+  <section>
+    <p class="conteo" data-testid="conteo"><%= resultado.total %> producto<%= resultado.total === 1 ? '' : 's' %></p>
+    <% if (!resultado.productos.length) { %>
+      <div class="vacio">
+        <p>No encontramos productos con esos filtros.</p>
+        <a href="/productos" class="btn btn-secundario">Ver todo el catálogo</a>
+      </div>
+    <% } else { %>
+      <div class="grilla-productos">
+        <% resultado.productos.forEach(function (p) { %>
+          <%- include('partials/tarjeta', { p: p, volver: '/productos' + (qs ? '?' + qs : '') }) %>
+        <% }) %>
+      </div>
+    <% } %>
+    <% if (resultado.totalPaginas > 1) { %>
+      <nav class="paginacion" aria-label="Paginación">
+        <% for (let i = 1; i <= resultado.totalPaginas; i++) { %>
+          <a href="/productos?<%= qs ? qs + '&' : '' %>pagina=<%= i %>" class="<%= i === resultado.pagina ? 'activa' : '' %>"><%= i %></a>
+        <% } %>
+      </nav>
+    <% } %>
+  </section>
+</div>
+
+<%- include('partials/pie') %>

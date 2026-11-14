@@ -1,0 +1,44 @@
+<%- include('partials/cabecera') %>
+
+<%
+  const estados = {
+    pagado: ['ok', '¡Gracias por tu compra!', 'Tu pago fue aprobado. Te avisaremos cuando despachemos tu pedido.'],
+    pendiente: ['info', 'Pago pendiente', 'Aún no recibimos la confirmación del pago.'],
+    rechazado: ['error', 'Pago rechazado', 'El pago no fue autorizado. Puedes intentarlo nuevamente desde tu carrito.'],
+    anulado: ['error', 'Pago anulado', 'El pago fue cancelado o expiró en Webpay. Tu carrito sigue disponible.'],
+  };
+  const e = estados[pedido.estado] || estados.pendiente;
+%>
+<ol class="pasos"><li class="hecho">Carrito</li><li class="hecho">Despacho y pago</li><li class="activo">Confirmación</li></ol>
+
+<div class="flash flash-<%= e[0] %>" data-testid="estado-pedido" data-estado="<%= pedido.estado %>">
+  <strong><%= e[1] %></strong> <%= e[2] %>
+</div>
+
+<div class="checkout">
+  <section class="form-tarjeta">
+    <h2>Pedido <%= pedido.orden_compra %></h2>
+    <dl class="ficha">
+      <dt>Estado</dt><dd><%= pedido.estado %></dd>
+      <dt>Medio de pago</dt><dd><%= pedido.metodo_pago === 'simulado' ? 'Pago simulado' : 'Webpay Plus (pruebas)' %></dd>
+      <% if (pedido.codigo_autorizacion) { %><dt>Código de autorización</dt><dd><%= pedido.codigo_autorizacion %></dd><% } %>
+      <dt>Despacho a</dt><dd><%= pedido.nombre_envio %>, <%= pedido.direccion %>, <%= pedido.comuna %></dd>
+      <dt>Fecha</dt><dd><%= pedido.creado_en %> UTC</dd>
+    </dl>
+    <% if (pedido.estado === 'pagado') { %>
+      <a href="/productos" class="btn btn-primario">Seguir comprando</a>
+    <% } else { %>
+      <a href="/carrito" class="btn btn-primario">Volver al carrito</a>
+    <% } %>
+  </section>
+  <aside class="resumen">
+    <h2>Detalle</h2>
+    <% pedido.items.forEach(function (it) { %>
+      <div class="fila"><span><%= it.cantidad %> × <%= it.nombre %></span><span><%= clp(it.precio * it.cantidad) %></span></div>
+    <% }) %>
+    <div class="fila"><span>Envío</span><span><%= Number(pedido.envio) ? clp(pedido.envio) : 'Gratis' %></span></div>
+    <div class="fila total"><span>Total</span><span><%= clp(pedido.total) %></span></div>
+  </aside>
+</div>
+
+<%- include('partials/pie') %>

@@ -1,0 +1,169 @@
+/* Grano Austral — hoja de estilos
+   Paleta: espresso #3b2a20 · crema #f6efe6 · cobre #c26a2d · verde austral #2f5d50 */
+:root {
+  --espresso: #3b2a20;
+  --crema: #f6efe6;
+  --cobre: #c26a2d;
+  --cobre-oscuro: #a4561f;
+  --verde: #2f5d50;
+  --texto: #2b211b;
+  --gris: #6f655e;
+  --borde: #e4d9cc;
+  --blanco: #fff;
+  --radio: 10px;
+  --sombra: 0 1px 2px rgba(59, 42, 32, .08), 0 4px 14px rgba(59, 42, 32, .06);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--texto); background: #fffdfa; line-height: 1.5; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--cobre-oscuro); }
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; color: var(--espresso); line-height: 1.2; }
+h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin: .4em 0 .3em; }
+h2 { font-size: 1.4rem; margin: 1.6em 0 .7em; }
+code { background: var(--crema); padding: 0 .3em; border-radius: 4px; }
+.contenedor { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+.principal { min-height: 60vh; padding-bottom: 48px; }
+
+/* Aviso y cabecera */
+.aviso-academico { background: var(--verde); color: #fff; font-size: .8rem; text-align: center; padding: 6px 12px; }
+.cabecera { background: var(--blanco); border-bottom: 1px solid var(--borde); position: sticky; top: 0; z-index: 10; }
+.cabecera-fila { display: flex; align-items: center; gap: 20px; padding-top: 12px; padding-bottom: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--espresso); font-family: Georgia, serif; font-size: 1.3rem; white-space: nowrap; }
+.buscador { flex: 1; display: flex; max-width: 520px; }
+.buscador input { flex: 1; padding: 10px 14px; border: 1px solid var(--borde); border-right: 0; border-radius: var(--radio) 0 0 var(--radio); font-size: 1rem; background: var(--crema); }
+.buscador button { padding: 0 16px; border: 0; background: var(--espresso); color: #fff; border-radius: 0 var(--radio) var(--radio) 0; cursor: pointer; font-size: .95rem; }
+.nav-usuario { display: flex; align-items: center; gap: 16px; margin-left: auto; white-space: nowrap; }
+.nav-usuario a { text-decoration: none; color: var(--espresso); font-weight: 500; }
+.btn-carrito { background: var(--crema); padding: 8px 14px; border-radius: 999px; }
+.contador { display: inline-block; min-width: 22px; padding: 0 6px; margin-left: 4px; text-align: center; background: var(--cobre); color: #fff; border-radius: 999px; font-size: .8rem; }
+.nav-categorias { display: flex; gap: 22px; overflow-x: auto; padding-bottom: 10px; font-size: .92rem; }
+.nav-categorias a { color: var(--gris); text-decoration: none; white-space: nowrap; }
+.nav-categorias a:hover { color: var(--cobre-oscuro); }
+
+/* Botones */
+.btn { display: inline-block; padding: 11px 20px; border-radius: var(--radio); font-weight: 600; text-decoration: none; text-align: center; cursor: pointer; border: 2px solid transparent; font-size: .95rem; }
+.btn-primario { background: var(--cobre); color: #fff; }
+.btn-primario:hover { background: var(--cobre-oscuro); }
+.btn-secundario { background: transparent; border-color: var(--espresso); color: var(--espresso); }
+.btn-secundario:hover { background: var(--espresso); color: #fff; }
+.btn-bloque { display: block; width: 100%; margin-top: 10px; }
+.btn-link { background: none; border: 0; color: var(--cobre-oscuro); cursor: pointer; padding: 0; text-decoration: underline; font-size: .9rem; }
+.btn-link.peligro { color: #b03a2e; }
+
+/* Hero y secciones */
+.hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center; background: var(--crema); border-radius: 18px; padding: 36px 40px; margin-top: 24px; }
+.sobretitulo { color: var(--verde); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; margin: 0; }
+.hero-acciones { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+.hero-img img { border-radius: 14px; max-height: 320px; margin: 0 auto; }
+.titulo-seccion { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.grilla-categorias { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+.categoria { display: flex; flex-direction: column; gap: 4px; padding: 16px; border: 1px solid var(--borde); border-radius: var(--radio); text-decoration: none; color: var(--texto); background: var(--blanco); }
+.categoria:hover { border-color: var(--cobre); box-shadow: var(--sombra); }
+.categoria span { font-size: .85rem; color: var(--gris); }
+.categoria small { color: var(--cobre-oscuro); margin-top: auto; }
+.beneficios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+.beneficios div { background: var(--crema); padding: 18px; border-radius: var(--radio); display: flex; flex-direction: column; }
+.beneficios span { color: var(--gris); font-size: .9rem; }
+
+/* Tarjetas de producto */
+.grilla-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }
+.tarjeta { background: var(--blanco); border: 1px solid var(--borde); border-radius: var(--radio); overflow: hidden; display: flex; flex-direction: column; }
+.tarjeta:hover { box-shadow: var(--sombra); }
+.tarjeta-img img { aspect-ratio: 1; width: 100%; }
+.tarjeta-cuerpo { padding: 12px 14px 14px; display: flex; flex-direction: column; flex: 1; }
+.tarjeta h3 { font-size: 1rem; margin: 4px 0 8px; font-family: inherit; }
+.tarjeta h3 a { color: var(--texto); text-decoration: none; }
+.tarjeta-pie { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+.etiqueta { font-size: .75rem; color: var(--verde); text-transform: uppercase; letter-spacing: .04em; }
+.precio { font-weight: 700; color: var(--espresso); font-size: 1.05rem; }
+.precio-grande { font-size: 1.7rem; margin: 6px 0 12px; }
+.valoracion { color: #b7791f; font-size: .85rem; }
+
+/* Catálogo y filtros */
+.migas { font-size: .85rem; color: var(--gris); margin-top: 18px; }
+.migas a { color: var(--gris); }
+.subtitulo { color: var(--gris); margin-top: 0; }
+.catalogo { display: grid; grid-template-columns: 250px 1fr; gap: 28px; align-items: start; }
+.filtros { position: sticky; top: 120px; background: var(--crema); padding: 18px; border-radius: var(--radio); }
+.filtros label, .filtros fieldset { display: block; margin-bottom: 12px; font-size: .88rem; font-weight: 600; color: var(--espresso); }
+.filtros input, .filtros select { width: 100%; margin-top: 4px; padding: 8px 10px; border: 1px solid var(--borde); border-radius: 8px; font-size: .95rem; background: #fff; }
+.rango { border: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.rango legend { margin-bottom: 4px; }
+.limpiar { display: block; text-align: center; margin-top: 10px; font-size: .85rem; }
+.conteo { color: var(--gris); margin-top: 0; }
+.paginacion { display: flex; gap: 6px; justify-content: center; margin-top: 26px; }
+.paginacion a { padding: 6px 12px; border: 1px solid var(--borde); border-radius: 8px; text-decoration: none; color: var(--espresso); }
+.paginacion a.activa { background: var(--espresso); color: #fff; border-color: var(--espresso); }
+.vacio { text-align: center; padding: 50px 20px; background: var(--crema); border-radius: var(--radio); margin-top: 20px; }
+
+/* Detalle */
+.detalle { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 14px; }
+.detalle-img img { border-radius: 14px; border: 1px solid var(--borde); width: 100%; }
+.ficha { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 18px 0; font-size: .95rem; }
+.ficha dt { color: var(--gris); }
+.ficha dd { margin: 0; }
+.agregar { display: flex; gap: 14px; align-items: end; }
+.agregar label { font-size: .85rem; color: var(--gris); }
+.agregar input { display: block; width: 80px; padding: 10px; border: 1px solid var(--borde); border-radius: 8px; font-size: 1rem; }
+
+/* Carrito, checkout, formularios */
+.carrito, .checkout { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+.tabla-carrito { width: 100%; border-collapse: collapse; background: #fff; }
+.tabla-carrito th, .tabla-carrito td { padding: 12px 8px; border-bottom: 1px solid var(--borde); text-align: left; vertical-align: middle; }
+.tabla-carrito th { font-size: .8rem; text-transform: uppercase; color: var(--gris); letter-spacing: .04em; }
+.celda-producto { display: flex; align-items: center; gap: 10px; }
+.celda-producto img { border-radius: 6px; border: 1px solid var(--borde); }
+.form-cantidad { display: flex; gap: 8px; align-items: center; }
+.form-cantidad input { width: 60px; padding: 6px; border: 1px solid var(--borde); border-radius: 6px; }
+.resumen { background: var(--crema); padding: 20px; border-radius: var(--radio); position: sticky; top: 120px; }
+.resumen h2 { margin-top: 0; }
+.resumen .fila { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; font-size: .95rem; }
+.resumen .total { border-top: 1px solid var(--borde); margin-top: 8px; padding-top: 12px; font-weight: 700; font-size: 1.1rem; }
+.nota { font-size: .85rem; color: var(--gris); }
+.form-angosto { max-width: 420px; margin: 30px auto; }
+.form-tarjeta { background: #fff; border: 1px solid var(--borde); border-radius: var(--radio); padding: 24px; }
+.form-tarjeta h1, .form-tarjeta h2 { margin-top: 0; }
+.form-tarjeta h2 + label { margin-top: 0; }
+.form-tarjeta label { display: block; margin-bottom: 14px; font-size: .9rem; font-weight: 600; color: var(--espresso); }
+.form-tarjeta input:not([type=radio]) { display: block; width: 100%; margin-top: 5px; padding: 10px 12px; border: 1px solid var(--borde); border-radius: 8px; font-size: 1rem; }
+.dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.opcion-pago { display: flex !important; gap: 10px; align-items: flex-start; font-weight: 400 !important; padding: 12px; border: 1px solid var(--borde); border-radius: 8px; cursor: pointer; }
+.opcion-pago:has(input:checked) { border-color: var(--cobre); background: #fff7f0; }
+.pasos { display: flex; gap: 8px; list-style: none; padding: 0; margin: 0 0 20px; counter-reset: paso; font-size: .9rem; }
+.pasos li { counter-increment: paso; color: var(--gris); }
+.pasos li::before { content: counter(paso) ". "; }
+.pasos li + li::before { content: "→  " counter(paso) ". "; }
+.pasos .activo { color: var(--cobre-oscuro); font-weight: 700; }
+.pasos .hecho { color: var(--verde); }
+
+/* Mensajes */
+.flash { padding: 12px 16px; border-radius: 8px; margin: 16px 0; border: 1px solid; }
+.flash-ok { background: #edf7f1; border-color: #a9d8bd; color: #1e5b3a; }
+.flash-info { background: #eef4fb; border-color: #b6cfe8; color: #24496e; }
+.flash-error { background: #fbeeee; border-color: #e8b6b6; color: #7a2323; }
+.estado { padding: 2px 10px; border-radius: 999px; font-size: .8rem; background: var(--crema); }
+.estado-pagado { background: #edf7f1; color: #1e5b3a; }
+.estado-rechazado, .estado-anulado { background: #fbeeee; color: #7a2323; }
+.texto { max-width: 760px; }
+
+/* Pie */
+.pie { background: var(--espresso); color: #e9dfd4; padding: 32px 0; font-size: .9rem; }
+.pie a { color: #f3c79f; }
+.pie-fila { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+/* Responsivo */
+@media (max-width: 860px) {
+  .cabecera-fila { flex-wrap: wrap; gap: 12px; }
+  .logo { flex: 1; }
+  .nav-usuario { gap: 10px; }
+  .buscador { order: 3; max-width: none; flex-basis: 100%; }
+  .hero, .detalle, .catalogo, .carrito, .checkout { grid-template-columns: 1fr; }
+  .hero { padding: 24px; }
+  .hero-img { display: none; }
+  .filtros, .resumen { position: static; }
+  .beneficios, .pie-fila { grid-template-columns: 1fr; }
+  .tabla-carrito thead { display: none; }
+  .tabla-carrito td { display: block; border: 0; padding: 4px 0; }
+  .tabla-carrito tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--borde); }
+}

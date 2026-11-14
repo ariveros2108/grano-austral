@@ -1,0 +1,18 @@
+<%- include('partials/cabecera') %>
+
+<div class="form-angosto">
+  <form action="/login" method="post" class="form-tarjeta">
+    <h1>Iniciar sesión</h1>
+    <% if (error) { %><div class="flash flash-error"><%= error %></div><% } %>
+    <label>Correo electrónico
+      <input type="email" name="email" required autocomplete="email" value="<%= email %>">
+    </label>
+    <label>Contraseña
+      <input type="password" name="password" required autocomplete="current-password">
+    </label>
+    <button type="submit" class="btn btn-primario btn-bloque">Ingresar</button>
+    <p class="nota">¿No tienes cuenta? <a href="/registro">Créala aquí</a>.</p>
+  </form>
+</div>
+
+<%- include('partials/pie') %>

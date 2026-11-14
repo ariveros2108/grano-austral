@@ -1,0 +1,25 @@
+<%- include('partials/cabecera') %>
+
+<article class="texto">
+  <h1>Sobre este proyecto</h1>
+  <p><strong>Grano Austral</strong> es una tienda <strong>ficticia</strong> creada para el trabajo semestral de
+  <em>INFB8091 Desempeño de Sistemas</em> (Universidad Tecnológica Metropolitana, 2° semestre 2026).
+  No se venden productos reales y los pagos usan el ambiente de integración (pruebas) de Webpay Plus de Transbank.</p>
+
+  <h2>Objetivo</h2>
+  <p>Construir un sitio de comercio electrónico funcional, instrumentado con Google Analytics 4 y Core Web Vitals,
+  y evaluar su desempeño bajo distintos niveles de carga generada con clientes sintéticos (k6).</p>
+
+  <h2>Funcionalidades</h2>
+  <ul>
+    <li>Catálogo con búsqueda, filtros (categoría, tueste, origen, precio), orden y paginación.</li>
+    <li>Detalle de producto con ficha técnica y productos relacionados.</li>
+    <li>Carrito de compras y checkout con Webpay Plus (sandbox).</li>
+    <li>Registro e inicio de sesión de usuarios, historial de pedidos.</li>
+    <li>Eventos de comercio electrónico GA4: <code>view_item_list</code>, <code>search</code>, <code>view_item</code>, <code>add_to_cart</code>,
+      <code>remove_from_cart</code>, <code>view_cart</code>, <code>begin_checkout</code>, <code>add_payment_info</code>, <code>purchase</code>, <code>sign_up</code>, <code>login</code>.</li>
+    <li>Métricas de servidor en <a href="/api/metricas">/api/metricas</a> y estado en <a href="/salud">/salud</a>.</li>
+  </ul>
+</article>
+
+<%- include('partials/pie') %>

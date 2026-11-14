@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= titulo %> · Grano Austral</title>
+  <meta name="description" content="Grano Austral: tienda ficticia de café de especialidad. Proyecto académico INFB8091 Desempeño de Sistemas, UTEM.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/estilos.css">
+  <% if (gaId) { %>
+  <!-- Google Analytics 4 (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= gaId %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '<%= gaId %>'<% if (gaDebug) { %>, { debug_mode: true }<% } %>);
+  </script>
+  <% } else { %>
+  <!-- Sin GA_MEASUREMENT_ID: los eventos se muestran en la consola del navegador -->
+  <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); console.info('[GA4 simulado]', ...arguments); }</script>
+  <% } %>
+</head>
+<body>
+  <div class="aviso-academico">Tienda ficticia · Proyecto académico INFB8091 UTEM · Los pagos usan el ambiente de pruebas de Webpay: no se cobra dinero real</div>
+  <header class="cabecera">
+    <div class="contenedor cabecera-fila">
+      <a href="/" class="logo" aria-label="Grano Austral, inicio">
+        <img src="/img/logo.svg" alt="" width="40" height="40">
+        <span>Grano <strong>Austral</strong></span>
+      </a>
+      <form action="/productos" method="get" class="buscador" role="search">
+        <input type="search" name="q" value="<%= q %>" placeholder="Buscar café, origen, notas…" aria-label="Buscar productos">
+        <button type="submit">Buscar</button>
+      </form>
+      <nav class="nav-usuario">
+        <% if (usuario) { %>
+          <a href="/cuenta">Hola, <%= usuario.nombre.split(' ')[0] %></a>
+        <% } else { %>
+          <a href="/login">Ingresar</a>
+        <% } %>
+        <a href="/carrito" class="btn-carrito">Carrito <span class="contador" data-testid="contador-carrito"><%= cantidadCarrito %></span></a>
+      </nav>
+    </div>
+    <nav class="contenedor nav-categorias" aria-label="Categorías">
+      <a href="/productos">Todo</a>
+      <a href="/productos?categoria=cafe-grano">Café en grano</a>
+      <a href="/productos?categoria=cafe-molido">Café molido</a>
+      <a href="/productos?categoria=capsulas">Cápsulas</a>
+      <a href="/productos?categoria=metodos">Métodos</a>
+      <a href="/productos?categoria=accesorios">Accesorios</a>
+      <a href="/productos?categoria=tazas">Tazas y termos</a>
+    </nav>
+  </header>
+  <main class="contenedor principal">
+    <% if (flash) { %>
+      <div class="flash flash-<%= flash.tipo %>" role="status"><%= flash.texto %></div>
+    <% } %>

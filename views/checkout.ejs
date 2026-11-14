@@ -1,0 +1,56 @@
+<%- include('partials/cabecera') %>
+
+<h1>Finalizar compra</h1>
+<ol class="pasos"><li class="hecho">Carrito</li><li class="activo">Despacho y pago</li><li>Confirmación</li></ol>
+
+<% if (error) { %><div class="flash flash-error"><%= error %></div><% } %>
+
+<div class="checkout">
+  <form action="/checkout" method="post" class="form-tarjeta">
+    <h2>Datos de despacho</h2>
+    <label>Nombre de quien recibe
+      <input name="nombre" required maxlength="80" value="<%= datos.nombre || '' %>">
+    </label>
+    <label>Dirección
+      <input name="direccion" required maxlength="150" value="<%= datos.direccion || '' %>" placeholder="Calle, número, depto.">
+    </label>
+    <div class="dos-columnas">
+      <label>Comuna
+        <input name="comuna" required maxlength="60" value="<%= datos.comuna || '' %>" placeholder="ej: Ñuñoa">
+      </label>
+      <label>Teléfono
+        <input name="telefono" maxlength="20" value="<%= datos.telefono || '' %>" placeholder="+56 9 1234 5678">
+      </label>
+    </div>
+
+    <h2>Medio de pago</h2>
+    <label class="opcion-pago">
+      <input type="radio" name="metodo" value="webpay" checked>
+      <span><strong>Webpay Plus</strong> — tarjeta de crédito o débito (ambiente de pruebas de Transbank)</span>
+    </label>
+    <% if (pagoSimulado) { %>
+    <label class="opcion-pago">
+      <input type="radio" name="metodo" value="simulado">
+      <span><strong>Pago simulado</strong> — sin pasar por Webpay (para pruebas de carga)</span>
+    </label>
+    <% } %>
+    <details class="nota">
+      <summary>Datos de prueba para Webpay</summary>
+      <p>Tarjeta VISA <code>4051 8856 0044 6623</code>, CVV <code>123</code>, cualquier fecha de vencimiento futura.<br>
+      En la autenticación del banco: RUT <code>11.111.111-1</code>, clave <code>123</code>.<br>
+      Para probar un rechazo usa la MasterCard <code>5186 0595 5959 0568</code>.</p>
+    </details>
+    <button type="submit" class="btn btn-primario btn-bloque">Pagar <%= clp(carrito.total) %></button>
+  </form>
+
+  <aside class="resumen">
+    <h2>Tu pedido</h2>
+    <% carrito.items.forEach(function (it) { %>
+      <div class="fila"><span><%= it.cantidad %> × <%= it.nombre %></span><span><%= clp(it.subtotal) %></span></div>
+    <% }) %>
+    <div class="fila"><span>Envío</span><span><%= carrito.envio ? clp(carrito.envio) : 'Gratis' %></span></div>
+    <div class="fila total"><span>Total</span><span><%= clp(carrito.total) %></span></div>
+  </aside>
+</div>
+
+<%- include('partials/pie') %>

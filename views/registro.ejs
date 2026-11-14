@@ -1,0 +1,21 @@
+<%- include('partials/cabecera') %>
+
+<div class="form-angosto">
+  <form action="/registro" method="post" class="form-tarjeta">
+    <h1>Crear cuenta</h1>
+    <% if (error) { %><div class="flash flash-error"><%= error %></div><% } %>
+    <label>Nombre
+      <input name="nombre" required maxlength="80" autocomplete="name" value="<%= datos.nombre || '' %>">
+    </label>
+    <label>Correo electrónico
+      <input type="email" name="email" required autocomplete="email" value="<%= datos.email || '' %>">
+    </label>
+    <label>Contraseña (mínimo 6 caracteres)
+      <input type="password" name="password" required minlength="6" autocomplete="new-password">
+    </label>
+    <button type="submit" class="btn btn-primario btn-bloque">Crear cuenta</button>
+    <p class="nota">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a>.</p>
+  </form>
+</div>
+
+<%- include('partials/pie') %>

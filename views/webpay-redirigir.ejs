@@ -1,0 +1,16 @@
+<%- include('partials/cabecera') %>
+
+<div class="vacio">
+  <h1>Redirigiendo a Webpay…</h1>
+  <p>Si no eres redirigido automáticamente, presiona el botón.</p>
+  <form id="form-webpay" action="<%= url %>" method="post">
+    <input type="hidden" name="token_ws" value="<%= token %>">
+    <button type="submit" class="btn btn-primario">Continuar a Webpay</button>
+  </form>
+</div>
+<script>
+  // Pequeña espera para que GA4 alcance a enviar add_payment_info antes de salir del sitio
+  setTimeout(function () { document.getElementById('form-webpay').submit(); }, 400);
+</script>
+
+<%- include('partials/pie') %>

@@ -1,0 +1,29 @@
+# Blueprint de Render (Infrastructure as Code).
+# En Render: New → Blueprint → seleccionar el repositorio. Las variables marcadas sync:false se piden al crear.
+services:
+  - type: web
+    name: grano-austral
+    runtime: node
+    plan: free
+    region: virginia  # la más cercana a Chile disponible
+    buildCommand: npm ci --omit=dev
+    startCommand: node server.js
+    healthCheckPath: /salud
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: GA_MEASUREMENT_ID
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_AUTH_TOKEN
+        sync: false
+      - key: PAGO_SIMULADO_HABILITADO
+        value: "true"
+      - key: BCRYPT_ROUNDS
+        value: "10"
