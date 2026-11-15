@@ -1,0 +1,13 @@
+RESUMEN NAVEGADOR — etiqueta "con-carga" contra https://grano-austral.onrender.com
+Duración: 1831 s · navegadores en paralelo: 3
+
+Core Web Vitals medidos por k6 (p75 = referencia de Google; bueno: LCP ≤ 2500 ms, INP ≤ 200 ms, CLS ≤ 0,1):
+  LCP   p75   2248 ms | mediana   1348 ms | p95   3855 ms
+  INP   p75     16 ms | mediana     16 ms | p95     44 ms
+  CLS   p75     0.000 | mediana     0.000 | p95     0.000
+  FCP   p75   2077 ms | mediana   1208 ms | p95   3599 ms
+  TTFB  p75   1649 ms | mediana    945 ms | p95   3082 ms
+
+Sesiones: 174 → vistas producto 240 → agregar carrito 69 → checkout 27 → compras 22
+Sesiones sin error: 100.0 % · checks OK: 100.0 %
+En GA4: Fuente / medio = k6-browser / sintetico · campaña = con-carga

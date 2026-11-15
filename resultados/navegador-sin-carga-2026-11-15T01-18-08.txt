@@ -1,0 +1,13 @@
+RESUMEN NAVEGADOR — etiqueta "sin-carga" contra https://grano-austral.onrender.com
+Duración: 1815 s · navegadores en paralelo: 3
+
+Core Web Vitals medidos por k6 (p75 = referencia de Google; bueno: LCP ≤ 2500 ms, INP ≤ 200 ms, CLS ≤ 0,1):
+  LCP   p75    520 ms | mediana    352 ms | p95   1100 ms
+  INP   p75     16 ms | mediana     16 ms | p95     32 ms
+  CLS   p75     0.000 | mediana     0.000 | p95     0.000
+  FCP   p75    516 ms | mediana    268 ms | p95   1096 ms
+  TTFB  p75    202 ms | mediana    168 ms | p95    514 ms
+
+Sesiones: 213 → vistas producto 319 → agregar carrito 77 → checkout 37 → compras 30
+Sesiones sin error: 100.0 % · checks OK: 100.0 %
+En GA4: Fuente / medio = k6-browser / sintetico · campaña = sin-carga
