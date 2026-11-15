@@ -1,0 +1,4 @@
+codigo;descripcion;peticiones
+200;OK;28306
+302;redirección (acciones POST);1560
+502;Bad Gateway (proxy de Render);231
