@@ -162,6 +162,20 @@ K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=resultados/normal.html \
 ```
 Cada ejecución deja en `resultados/`: `<escenario>-<fecha>.json` (datos completos), `.txt` (resumen con percentiles, throughput, errores, embudo y umbrales), el `.html` del dashboard y el `.csv` del monitor.
 
+### Tráfico con navegador real (`carga/k6/navegador.js`)
+
+`tienda.js` hace peticiones HTTP sin ejecutar JavaScript, por eso **no aparece en GA4**. `navegador.js` usa el módulo `k6/browser` (Chromium o Edge sin ventana): ejecuta `gtag.js`, así que GA4 recibe sesiones, eventos de e-commerce, engagement y Web Vitals, y además k6 mide por su cuenta LCP, INP, CLS, FCP y TTFB (p75, el percentil de referencia de Google).
+
+```powershell
+# Windows sin Chrome: usar Edge
+$env:K6_BROWSER_EXECUTABLE_PATH="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+k6 run -e BASE_URL=https://grano-austral-xxxx.onrender.com -e NAVEGADORES=3 -e DURACION=30m -e ETIQUETA=sin-carga carga/k6/navegador.js
+```
+
+- Parámetros: `NAVEGADORES` (sesiones en paralelo, 3 por defecto; cada una usa ~250 MB de RAM del PC), `DURACION`, `MIX`, `ETIQUETA`, `PENSAR_MIN` / `PENSAR_MAX`.
+- Cada sesión entra con `utm_source=k6-browser&utm_medium=sintetico&utm_campaign=<ETIQUETA>`: en GA4 se separa o excluye por **Fuente / medio de la sesión** y **Campaña**. Declarar en el informe qué parte del tráfico es sintética.
+- **Normal vs. bajo carga (Fase 2):** correr `navegador.js` con `ETIQUETA=sin-carga`; luego correrlo otra vez con `ETIQUETA=con-carga` **mientras** `tienda.js` ejecuta `normal` o `pico` en otra terminal. Comparar los Web Vitals de `resultados/navegador-*.txt` y, en GA4, filtrar por campaña.
+
 > Con la CPU limitada del plan gratuito, el sitio se satura con relativamente pocos usuarios; si `estres` colapsa muy temprano, bajar el máximo (`-e VUS=150`). Encontrar ese punto **es** el resultado buscado. Usar el sitio propio solamente y no dejar pruebas largas corriendo sin supervisión.
 
 ## 7. Trabajar con Claude Code

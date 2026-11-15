@@ -11,7 +11,8 @@
     "carga:baja": "k6 run -e ESCENARIO=baja carga/k6/tienda.js",
     "carga:normal": "k6 run -e ESCENARIO=normal carga/k6/tienda.js",
     "carga:pico": "k6 run -e ESCENARIO=pico carga/k6/tienda.js",
-    "carga:estres": "k6 run -e ESCENARIO=estres carga/k6/tienda.js"
+    "carga:estres": "k6 run -e ESCENARIO=estres carga/k6/tienda.js",
+    "carga:navegador": "k6 run carga/k6/navegador.js"
   },
   "author": "Grupo INFB8091 - UTEM",
   "license": "UNLICENSED",
