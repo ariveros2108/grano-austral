@@ -1,0 +1,4 @@
+campana;sesiones;sesiones_con_interaccion;porcentaje_interaccion;tiempo_interaccion_medio_s;eventos_por_sesion;eventos_clave
+sin-carga;213;211;99,06;9;27,02;29
+con-carga;174;174;100,00;11;29,13;19
+prueba;115;22;19,13;1;11,61;4

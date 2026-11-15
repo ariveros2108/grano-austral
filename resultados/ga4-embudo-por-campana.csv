@@ -1,0 +1,6 @@
+paso;evento_ga4;sin_carga_usuarios;con_carga_usuarios
+Sesiones;session_start;213;174
+Vitrina (ve un producto);view_item;203;170
+Carrito (agrega);add_to_cart;62;52
+Compra (inicia checkout);begin_checkout;26;19
+Pago (completa);purchase;29;19
