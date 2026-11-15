@@ -1,0 +1,795 @@
+{
+  "root_group": {
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": [
+      {
+        "checks": [
+          {
+            "name": "inicio: 200",
+            "path": "::navegante::inicio: 200",
+            "id": "133440cd744fe7d660722c139acef4e2",
+            "passes": 664,
+            "fails": 323
+          },
+          {
+            "passes": 587,
+            "fails": 400,
+            "name": "listado_categoria: 200",
+            "path": "::navegante::listado_categoria: 200",
+            "id": "edacd01345902021d4186c69fe56fcc2"
+          },
+          {
+            "name": "detalle_producto: 200",
+            "path": "::navegante::detalle_producto: 200",
+            "id": "337eff924da441ce56c3383e91109dc4",
+            "passes": 889,
+            "fails": 198
+          }
+        ],
+        "name": "navegante",
+        "path": "::navegante",
+        "id": "1c37936df3210d32d07809c5d857e85f",
+        "groups": []
+      },
+      {
+        "name": "buscador",
+        "path": "::buscador",
+        "id": "21a4f28813b70d5228b9691dce2e5465",
+        "groups": [],
+        "checks": [
+          {
+            "name": "inicio: 200",
+            "path": "::buscador::inicio: 200",
+            "id": "d7e309dac665521bfecc0665c540de14",
+            "passes": 391,
+            "fails": 231
+          },
+          {
+            "id": "2d32b0325f3a90e4e939d659293ab364",
+            "passes": 325,
+            "fails": 297,
+            "name": "busqueda: 200",
+            "path": "::buscador::busqueda: 200"
+          },
+          {
+            "fails": 150,
+            "name": "busqueda_filtrada: 200",
+            "path": "::buscador::busqueda_filtrada: 200",
+            "id": "4a97b31d544c32887e82d0585c5a7949",
+            "passes": 220
+          },
+          {
+            "path": "::buscador::listado_categoria: 200",
+            "id": "facd96234a68ef7d1898217869a37bd3",
+            "passes": 182,
+            "fails": 182,
+            "name": "listado_categoria: 200"
+          },
+          {
+            "name": "detalle_producto: 200",
+            "path": "::buscador::detalle_producto: 200",
+            "id": "948e38a8d488733d026e539628ec80be",
+            "passes": 334,
+            "fails": 105
+          }
+        ]
+      },
+      {
+        "name": "comprador",
+        "path": "::comprador",
+        "id": "d2d14b3c9d449f2b7e4900bfcd74f8d0",
+        "groups": [],
+        "checks": [
+          {
+            "fails": 137,
+            "name": "login_form: 200",
+            "path": "::comprador::login_form: 200",
+            "id": "1c509defb437f145a26ac18420383d51",
+            "passes": 227
+          },
+          {
+            "fails": 160,
+            "name": "login: redirige (302)",
+            "path": "::comprador::login: redirige (302)",
+            "id": "3e7eb17163061859c499e65f3582a2ff",
+            "passes": 204
+          },
+          {
+            "name": "listado_categoria: 200",
+            "path": "::comprador::listado_categoria: 200",
+            "id": "3331f14e62cc8b735770fcc794e00e13",
+            "passes": 336,
+            "fails": 64
+          },
+          {
+            "name": "detalle_producto: 200",
+            "path": "::comprador::detalle_producto: 200",
+            "id": "d7d700e94063f8cfb614db7915b160f2",
+            "passes": 292,
+            "fails": 43
+          },
+          {
+            "id": "0c7ba18d70a4720efbb70c4c587ed8b6",
+            "passes": 267,
+            "fails": 23,
+            "name": "agregar_carrito: redirige (302)",
+            "path": "::comprador::agregar_carrito: redirige (302)"
+          },
+          {
+            "fails": 57,
+            "name": "carrito: 200",
+            "path": "::comprador::carrito: 200",
+            "id": "972135e4fae1ad0cf61053d7d7c37fea",
+            "passes": 144
+          },
+          {
+            "passes": 146,
+            "fails": 53,
+            "name": "checkout: 200",
+            "path": "::comprador::checkout: 200",
+            "id": "ca6bc8c7e29a35c45215ab8ff6b85cdc"
+          },
+          {
+            "passes": 130,
+            "fails": 16,
+            "name": "checkout con sesión",
+            "path": "::comprador::checkout con sesión",
+            "id": "2450aff2a9baeee372c38891236e8e31"
+          },
+          {
+            "name": "pagar: redirige (302)",
+            "path": "::comprador::pagar: redirige (302)",
+            "id": "9de1a010efb38a71cd844d96ac6f9270",
+            "passes": 126,
+            "fails": 4
+          },
+          {
+            "name": "confirmacion_pedido: 200",
+            "path": "::comprador::confirmacion_pedido: 200",
+            "id": "4ee35f6493023fedc1072f55e4f28383",
+            "passes": 121,
+            "fails": 5
+          },
+          {
+            "name": "pedido pagado",
+            "path": "::comprador::pedido pagado",
+            "id": "e047d33a34f4912abb1ccc7097537ad9",
+            "passes": 121,
+            "fails": 5
+          }
+        ]
+      },
+      {
+        "path": "::abandono_carrito",
+        "id": "2e305ac0deb2b27e017c27c43d9d97a4",
+        "groups": [],
+        "checks": [
+          {
+            "name": "inicio: 200",
+            "path": "::abandono_carrito::inicio: 200",
+            "id": "bf752e5e263a1c50cdceecb79718d946",
+            "passes": 357,
+            "fails": 159
+          },
+          {
+            "name": "listado_categoria: 200",
+            "path": "::abandono_carrito::listado_categoria: 200",
+            "id": "877742326ab6dc0391498d740ea44517",
+            "passes": 289,
+            "fails": 227
+          },
+          {
+            "fails": 41,
+            "name": "detalle_producto: 200",
+            "path": "::abandono_carrito::detalle_producto: 200",
+            "id": "c8be664dc45f996e789deaf5d4d33e44",
+            "passes": 248
+          },
+          {
+            "name": "agregar_carrito: redirige (302)",
+            "path": "::abandono_carrito::agregar_carrito: redirige (302)",
+            "id": "bc67324860ec9f3310a90e8d180dc4ec",
+            "passes": 226,
+            "fails": 22
+          },
+          {
+            "name": "carrito: 200",
+            "path": "::abandono_carrito::carrito: 200",
+            "id": "3565532f15845077857767285e899174",
+            "passes": 206,
+            "fails": 20
+          },
+          {
+            "passes": 53,
+            "fails": 10,
+            "name": "checkout_sin_sesion: 200",
+            "path": "::abandono_carrito::checkout_sin_sesion: 200",
+            "id": "0ae16e7e898105e68a7cd34ac8bbe5a8"
+          }
+        ],
+        "name": "abandono_carrito"
+      }
+    ],
+    "checks": [],
+    "name": "",
+    "path": ""
+  },
+  "options": {
+    "noColor": false,
+    "summaryTrendStats": [
+      "avg",
+      "med",
+      "p(90)",
+      "p(95)",
+      "p(99)",
+      "min",
+      "max"
+    ],
+    "summaryTimeUnit": ""
+  },
+  "state": {
+    "isStdOutTTY": false,
+    "isStdErrTTY": false,
+    "testRunDurationMs": 595156.6254
+  },
+  "metrics": {
+    "http_req_duration{name:login_form}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 9521.633809999998,
+        "p(95)": 12674.576314999995,
+        "p(99)": 18600.137177,
+        "min": 130.6641,
+        "max": 19086.0527,
+        "avg": 2373.1067909340663,
+        "med": 301.77765
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      }
+    },
+    "iteration_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 23945.09223162564,
+        "med": 20171.8365,
+        "p(90)": 44162.07680000004,
+        "p(95)": 51442.87168999999,
+        "p(99)": 70926.60285599991,
+        "min": 1350.1411,
+        "max": 113598.6536
+      }
+    },
+    "http_req_duration{name:pagar}": {
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      },
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 953.92445,
+        "p(90)": 2882.7409600000005,
+        "p(95)": 4733.270389999999,
+        "p(99)": 13895.73650499999,
+        "min": 162.0358,
+        "max": 15679.9528,
+        "avg": 1620.2950938461543
+      }
+    },
+    "http_req_duration{name:busqueda_filtrada}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 9267.264340000003,
+        "p(95)": 11930.785135,
+        "p(99)": 15491.693476000002,
+        "min": 130.4902,
+        "max": 19077.8162,
+        "avg": 2461.9687897297276,
+        "med": 409.5525
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      }
+    },
+    "embudo_3_agregar_carrito": {
+      "values": {
+        "count": 538,
+        "rate": 0.9039637249075644
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "http_req_waiting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 542.6511,
+        "p(90)": 9806.5603,
+        "p(95)": 13559.160619999999,
+        "p(99)": 18402.920189,
+        "min": 127.0565,
+        "max": 31792.7091,
+        "avg": 2781.6648020484126
+      }
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 129.5977,
+        "max": 31792.7091,
+        "avg": 3413.341387499449,
+        "med": 979.5443,
+        "p(90)": 12009.8573,
+        "p(95)": 14427.6815,
+        "p(99)": 18595.22155
+      }
+    },
+    "data_received": {
+      "contains": "data",
+      "values": {
+        "count": 1580629226,
+        "rate": 2655820.6000608187
+      },
+      "type": "counter"
+    },
+    "http_req_duration": {
+      "contains": "time",
+      "values": {
+        "p(99)": 18403.432661,
+        "min": 129.5497,
+        "max": 31792.7091,
+        "avg": 2814.090905672774,
+        "med": 615.4701,
+        "p(90)": 9807.0139,
+        "p(95)": 13560.307519999997
+      },
+      "type": "trend"
+    },
+    "http_req_receiving": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(99)": 502.315758,
+        "min": 0,
+        "max": 706.589,
+        "avg": 32.34433395896698,
+        "med": 0,
+        "p(90)": 114.58998000000005,
+        "p(95)": 181.94966999999997
+      }
+    },
+    "http_req_duration{name:busqueda}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 19164.9398,
+        "avg": 1810.7960016077166,
+        "med": 340.9723,
+        "p(90)": 7080.24519,
+        "p(95)": 9423.242124999997,
+        "p(99)": 15555.671040999996,
+        "min": 130.8403
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      }
+    },
+    "embudo_5_compras": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 121,
+        "rate": 0.20330782660560462
+      }
+    },
+    "http_req_duration{name:detalle_producto}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 12388.963455,
+        "p(99)": 15203.954103999997,
+        "min": 130.7544,
+        "max": 18373.4577,
+        "avg": 2424.880288883722,
+        "med": 816.88075,
+        "p(90)": 9008.32893
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      }
+    },
+    "http_req_tls_handshaking": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 0,
+        "p(95)": 0,
+        "p(99)": 0,
+        "min": 0,
+        "max": 51.6425,
+        "avg": 0.05190395767264253,
+        "med": 0
+      }
+    },
+    "http_req_duration{name:estaticos}": {
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      },
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 31792.7091,
+        "avg": 3051.4718736822065,
+        "med": 635.5176,
+        "p(90)": 10700.4073,
+        "p(95)": 14099.099960000001,
+        "p(99)": 18504.457944,
+        "min": 129.5497
+      }
+    },
+    "http_reqs": {
+      "values": {
+        "count": 30902,
+        "rate": 51.9224665931107
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "group_duration": {
+      "contains": "time",
+      "values": {
+        "avg": 23945.061989350535,
+        "med": 20171.8365,
+        "p(90)": 44162.07680000004,
+        "p(95)": 51441.698449999996,
+        "p(99)": 70926.60285599991,
+        "min": 1349.6383,
+        "max": 113598.6536
+      },
+      "type": "trend"
+    },
+    "embudo_1_sesiones": {
+      "values": {
+        "rate": 4.182092400176446,
+        "count": 2489
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "http_req_duration{name:listado_categoria}": {
+      "contains": "time",
+      "values": {
+        "p(90)": 8526.275600000004,
+        "p(95)": 11416.879219999992,
+        "p(99)": 17200.584742000054,
+        "min": 130.412,
+        "max": 19411.8455,
+        "avg": 2248.587764975743,
+        "med": 556.9134
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      },
+      "type": "trend"
+    },
+    "http_req_blocked": {
+      "values": {
+        "p(95)": 0,
+        "p(99)": 0,
+        "min": 0,
+        "max": 67.8592,
+        "avg": 0.07151780467283671,
+        "med": 0,
+        "p(90)": 0
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_req_duration{name:login}": {
+      "values": {
+        "p(90)": 8638.693019999999,
+        "p(95)": 10289.28085,
+        "p(99)": 15877.509588000004,
+        "min": 131.4607,
+        "max": 18285.4692,
+        "avg": 2492.6332434065926,
+        "med": 973.24185
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_req_duration{name:agregar_carrito}": {
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      },
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 544.6740500000001,
+        "p(90)": 4073.85755,
+        "p(95)": 9649.122524999999,
+        "p(99)": 15222.334444999999,
+        "min": 132.2581,
+        "max": 16952.0695,
+        "avg": 1720.9376436802995
+      }
+    },
+    "embudo_4_checkout": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 262,
+        "rate": 0.4402202526501522
+      }
+    },
+    "compra_exitosa": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0.3370473537604457,
+        "passes": 121,
+        "fails": 238
+      }
+    },
+    "duracion_flujo_compra_ms": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 45385.14070351759,
+        "med": 40642,
+        "p(90)": 75108.8,
+        "p(95)": 83222.7,
+        "p(99)": 98998.70000000003,
+        "min": 15134,
+        "max": 113599
+      }
+    },
+    "http_req_duration{name:inicio}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 9663.805199999999,
+        "p(95)": 13398.43874,
+        "p(99)": 18654.561735999996,
+        "min": 130.6733,
+        "max": 19413.4381,
+        "avg": 2831.1374062588197,
+        "med": 613.2115
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      }
+    },
+    "http_req_duration{name:carrito}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(99)": 13388.480434000001,
+        "min": 131.6103,
+        "max": 15105.3524,
+        "avg": 1339.0928081967222,
+        "med": 495.3869,
+        "p(90)": 2504.92868,
+        "p(95)": 8054.4554299999945
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      }
+    },
+    "http_req_sending": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.08176966539382577,
+        "med": 0,
+        "p(90)": 0.503,
+        "p(95)": 0.5348,
+        "p(99)": 0.8646609999999921,
+        "min": 0,
+        "max": 2.7856
+      }
+    },
+    "iterations": {
+      "values": {
+        "count": 2479,
+        "rate": 4.165290100456974
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "http_req_duration{tipo:pagina}": {
+      "thresholds": {
+        "p(95)<800": {
+          "ok": false
+        }
+      },
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(99)": 17051.561861000006,
+        "min": 130.412,
+        "max": 19413.4381,
+        "avg": 2343.6766265984115,
+        "med": 610.8683000000001,
+        "p(90)": 8962.058030000002,
+        "p(95)": 12301.257894999992
+      }
+    },
+    "embudo_2_vistas_producto": {
+      "contains": "default",
+      "values": {
+        "count": 2150,
+        "rate": 3.612494439686363
+      },
+      "type": "counter"
+    },
+    "http_req_duration{name:checkout_sin_sesion}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 375.75415,
+        "p(90)": 4045.9800700000037,
+        "p(95)": 9485.266,
+        "p(99)": 11791.194244000004,
+        "min": 133.9633,
+        "max": 12612.4532,
+        "avg": 1462.7667774999998
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      }
+    },
+    "http_req_failed": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0.25988609151511227,
+        "passes": 8031,
+        "fails": 22871
+      },
+      "thresholds": {
+        "rate<0.01": {
+          "ok": false
+        }
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 1,
+        "min": 0,
+        "max": 200
+      }
+    },
+    "http_req_duration{name:confirmacion_pedido}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 133.164,
+        "max": 15095.0279,
+        "avg": 1418.4043412698413,
+        "med": 705.6358499999999,
+        "p(90)": 2500.2909,
+        "p(95)": 5847.924225000001,
+        "p(99)": 12072.952299999999
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      }
+    },
+    "data_sent": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 6904147,
+        "rate": 11600.55472012897
+      }
+    },
+    "vus_max": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 200,
+        "min": 200,
+        "max": 200
+      }
+    },
+    "http_req_duration{tipo:accion}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 6678.986359999997,
+        "p(95)": 9873.511819999998,
+        "p(99)": 15489.280754999983,
+        "min": 131.4607,
+        "max": 18285.4692,
+        "avg": 1980.4470107558122,
+        "med": 643.80575
+      },
+      "thresholds": {
+        "p(95)<1500": {
+          "ok": false
+        }
+      }
+    },
+    "http_req_connecting": {
+      "values": {
+        "avg": 0.018126626108342515,
+        "med": 0,
+        "p(90)": 0,
+        "p(95)": 0,
+        "p(99)": 0,
+        "min": 0,
+        "max": 8.399
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "checks": {
+      "values": {
+        "rate": 0.7072975940900469,
+        "passes": 7085,
+        "fails": 2932
+      },
+      "thresholds": {
+        "rate>0.98": {
+          "ok": false
+        }
+      },
+      "type": "rate",
+      "contains": "default"
+    },
+    "http_req_duration{name:checkout}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(99)": 15654.575592,
+        "min": 131.5668,
+        "max": 18288.8482,
+        "avg": 2039.3216835616438,
+        "med": 486.7202,
+        "p(90)": 7939.201260000005,
+        "p(95)": 12533.198069999999
+      },
+      "thresholds": {
+        "p(95)<3000": {
+          "ok": false
+        }
+      }
+    }
+  }
+}

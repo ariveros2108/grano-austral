@@ -1,0 +1,48 @@
+RESUMEN — escenario "pico" contra https://grano-austral.onrender.com
+Duración: 595 s · VUs máx: 200
+
+Tiempo de respuesta HTTP (todas las peticiones):
+  promedio 2814.1 ms | mediana 615.5 ms | p90 9807.0 ms | p95 13560.3 ms | p99 18403.4 ms | máx 31792.7 ms
+Throughput: 51.92 req/s (30902 peticiones)
+Tasa de error HTTP: 25.99 %
+Checks OK: 70.73 %
+
+Embudo sintético:
+  sesiones 2489 → vistas producto 2150 → agregar carrito 538 → checkout 262 → compras 121
+  compras exitosas: 33.7 % · duración flujo compra p95: 83222.7 ms
+
+Por página (p95):
+  agregar_carrito          p95 9649.1 ms  (mediana 544.7 ms)
+  busqueda_filtrada        p95 11930.8 ms  (mediana 409.6 ms)
+  busqueda                 p95 9423.2 ms  (mediana 341.0 ms)
+  carrito                  p95 8054.5 ms  (mediana 495.4 ms)
+  checkout_sin_sesion      p95 9485.3 ms  (mediana 375.8 ms)
+  checkout                 p95 12533.2 ms  (mediana 486.7 ms)
+  confirmacion_pedido      p95 5847.9 ms  (mediana 705.6 ms)
+  detalle_producto         p95 12389.0 ms  (mediana 816.9 ms)
+  estaticos                p95 14099.1 ms  (mediana 635.5 ms)
+  inicio                   p95 13398.4 ms  (mediana 613.2 ms)
+  listado_categoria        p95 11416.9 ms  (mediana 556.9 ms)
+  login_form               p95 12674.6 ms  (mediana 301.8 ms)
+  login                    p95 10289.3 ms  (mediana 973.2 ms)
+  pagar                    p95 4733.3 ms  (mediana 953.9 ms)
+
+Umbrales:
+  NO CUMPLE http_req_duration{name:busqueda} p(95)<3000
+  NO CUMPLE http_req_duration{name:detalle_producto} p(95)<3000
+  NO CUMPLE http_req_duration{name:estaticos} p(95)<3000
+  NO CUMPLE http_req_duration{name:listado_categoria} p(95)<3000
+  NO CUMPLE http_req_duration{name:login} p(95)<3000
+  NO CUMPLE http_req_duration{name:agregar_carrito} p(95)<3000
+  NO CUMPLE http_req_duration{name:inicio} p(95)<3000
+  NO CUMPLE http_req_duration{name:carrito} p(95)<3000
+  NO CUMPLE http_req_duration{tipo:pagina} p(95)<800
+  NO CUMPLE http_req_duration{name:checkout_sin_sesion} p(95)<3000
+  NO CUMPLE http_req_failed rate<0.01
+  NO CUMPLE http_req_duration{name:confirmacion_pedido} p(95)<3000
+  NO CUMPLE http_req_duration{tipo:accion} p(95)<1500
+  NO CUMPLE checks rate>0.98
+  NO CUMPLE http_req_duration{name:checkout} p(95)<3000
+  NO CUMPLE http_req_duration{name:login_form} p(95)<3000
+  NO CUMPLE http_req_duration{name:pagar} p(95)<3000
+  NO CUMPLE http_req_duration{name:busqueda_filtrada} p(95)<3000
